@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+{% for post in posts  %}
+
+<div class="contenedor p-3">
+    <div class="card card-body bg-black">
+        <div class="row">
+            <div class="row-3">
+                <img class="imagen" src="{{post.image.url}}" alt="{{post.title}}">
+            </div>
+            <div class="col-9">
+                <h2>{{post.title}}</h2>
+                <p>{{post.description|safe|truncatechars:100}}</p> <!--safe sirve para que pueda procesar las etiquetas html si las hay -->
+                <P>{{post.date|date:'M d Y'|upper}}</P>
+    
+        
+                <a href="{% url "blog:post_detail" post.id %}" class="btn btn-primary ">{{post.title}}</a>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+{% endfor %}
+
+{% endblock content %}
